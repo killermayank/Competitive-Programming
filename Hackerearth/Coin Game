@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define mp make_pair
+const int maxi= (1e6);
+bool check[maxi+1];
+
+int main()
+{
+	set<pair<int,int> > L;   // comprises of W and L ie for winning and loosing 
+    int d=0;
+    for(int i=0;(i+d)<=maxi;i++)
+    {
+    	if(!check[i] && !check[i+d]) 
+    	{
+    		L.insert(mp(i,i+d));
+    		check[i+d]= true;
+    		++d;
+		}
+	}
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int a,b;
+		cin>>a>>b;
+		if(L.find({a,b})!=L.end() || L.find({a,b})!=L.end())  // if this is loosing state then the man wins 
+		{                                                 // if this is winning state then it is loosing state
+		   cout<<"Don't Play\n";
+		}
+		else
+		{
+			cout<<"Play\n";
+		}
+	}
+	return 0;
+	//bye bye
+}
