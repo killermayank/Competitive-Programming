@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int start ;
+vector<pair<int,int> > vp;
+
+int solution(int var)
+{
+	if(var<vp[start].first) return vp[start].second+1;
+	
+	for(int i=start;i<vp.size();i++)
+	{
+		if(var>=vp[i-1].first && var<vp[i].first)
+		{
+			start = i-1;
+			return vp[i-1].second;
+		}
+	}
+	return 1;
+	
+}
+int main()
+{
+     int n;
+     cin>>n; int arr[n];
+     for(int i=0;i<n;i++) cin>>arr[i];
+     
+     int count =1;
+     for(int i=0;i<n;i++)
+     {
+     	if(arr[i]!=arr[i+1])
+     	{
+     		vp.push_back(make_pair(arr[i],count));
+     		count++;
+		}
+	 }
+	 sort(vp.begin(),vp.end());
+	 int second_test;
+	 cin>>second_test;
+	 start =0;
+	 while(second_test--)
+	 {
+	 	int sec;
+	 	cin>>sec;
+	 	int gg = solution(sec);
+	 	cout<<gg<<endl;
+	 }
+	 return 0;
+    //bye bye
+}
